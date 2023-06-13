@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.1.0",
+    "razorpay": "^2.8.6",
+    "stripe": "^12.4.0",
+    "uuid": "^9.0.0"
+  }
+}
