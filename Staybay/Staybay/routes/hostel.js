@@ -1,4 +1,4 @@
-const express = require("express");
+qconst express = require("express");
 const router = express.Router();
 const requireLogin = require("../middleware/auth");
 const Hostel = require("../models/Hostel");
@@ -7,7 +7,7 @@ router.get("/allHostel", (req, res) => {
     Hostel.find()
       .sort({ date: -1 })
       
-  
+  //sorting 
       .then((posts) => {
         res.json(posts);
       })
