@@ -15,6 +15,7 @@ router.get("/allHostel", (req, res) => {
         console.log(err);
       });
   });
+// Routing
 
   router.get('/hostel/:id',(req,res)=>{
     
