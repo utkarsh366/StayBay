@@ -1,4 +1,4 @@
-//Server
+//Server is running here
 const express  = require('express')
 const  mongoose  = require('mongoose')
 const { MONGO_URI } = require("./keys");
