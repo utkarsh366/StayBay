@@ -1,4 +1,4 @@
-qconst express = require("express");
+const express = require("express");
 const router = express.Router();
 const requireLogin = require("../middleware/auth");
 const Hostel = require("../models/Hostel");

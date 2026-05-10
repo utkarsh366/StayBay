@@ -9,5 +9,8 @@
     "razorpay": "^2.8.6",
     "stripe": "^12.4.0",
     "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "mongodb-memory-server": "^11.1.0"
   }
 }

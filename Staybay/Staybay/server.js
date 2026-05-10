@@ -8,13 +8,30 @@ const orderRoutes = require('./routes/orderRoute')
 const cors = require('cors')
 
 const app = express()
-mongoose.connect(MONGO_URI, {
-  useNewUrlParser: true,
-
-});
-mongoose.connection.on("connected", () => {
-  console.log("mongodb is connected");
-});
+if (process.env.NODE_ENV === 'test') {
+  const { MongoMemoryServer } = require('mongodb-memory-server');
+  MongoMemoryServer.create().then((mongoServer) => {
+    mongoose.connect(mongoServer.getUri(), {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    }).then(() => {
+      console.log("Mock mongodb is connected");
+      // Seed data if needed
+      const fs = require('fs');
+      const Hostel = require('./models/Hostel');
+      const seedData = JSON.parse(fs.readFileSync('./mongodb.json', 'utf-8'));
+      Hostel.insertMany(seedData).then(() => console.log('Mock Data Seeded')).catch(e => console.log(e));
+    });
+  });
+} else {
+  mongoose.connect(MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  });
+  mongoose.connection.on("connected", () => {
+    console.log("mongodb is connected");
+  });
+}
 
 
 app.use(express.json())
@@ -31,6 +48,7 @@ const PORT = process.env.PORT || 5000
 //App listing at port 
 app.listen(
   PORT,
-  console.log(
-    "it is working and running at 5000......"
+  () => console.log(
+    "it is working and running at " + PORT + "......"
   )
+);
