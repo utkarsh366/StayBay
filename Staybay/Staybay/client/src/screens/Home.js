@@ -22,34 +22,25 @@ const Home = () => {
    
 
     return (
-        <div>
-             <div className="filter_component">
-                 
-             </div>
-            <div className="row justify-content-center ">
-                <div className="col-md-2">
-
-                   <Sidebar  />
-                  
-                  
+        <div className="min-h-screen bg-gray-50 pt-24 px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col md:flex-row gap-6 max-w-7xl mx-auto">
+                <div className="w-full md:w-1/4">
+                   <Sidebar />
                 </div>
-                <div className="col-md-9">
-                <div className="row justify-content-center ">
-               {loading ? (<Loading />): error ? ( <Error error="something went worng" /> ) : 
-                   ( hostels.map(hostel => {
-                    return <div className="col-md-4 "  key={hostel._id}>
-                        <div>
-                            <Hostel  hostel={hostel}  />
-                        </div>
+                <div className="w-full md:w-3/4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {loading ? (<Loading />): error ? ( <Error error="something went worng" /> ) :
+                            ( hostels.map(hostel => {
+                                return (
+                                    <div key={hostel._id} className="w-full">
+                                        <Hostel hostel={hostel} />
+                                    </div>
+                                )
+                            }))
+                        }
                     </div>
-                }))
-               }
-            
-           </div>
                 </div>
             </div>
-
-           
         </div>
     );
 };
